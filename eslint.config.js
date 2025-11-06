@@ -1,5 +1,6 @@
 import js from '@eslint/js'
 import globals from 'globals'
+import reactRefresh from 'eslint-plugin-react-refresh'
 
 export default [
   js.configs.recommended,
@@ -13,6 +14,9 @@ export default [
         ...globals.es2020,
       },
     },
+    plugins: {
+      'react-refresh': reactRefresh,
+    },
     rules: {
       'react-refresh/only-export-components': [
         'warn',
@@ -24,7 +28,7 @@ export default [
     files: ['**/__tests__/**/*.{js,jsx}'],
     languageOptions: {
       globals: {
-        ...globals.jest, // This adds Jest/Vitest globals
+        ...globals.jest,
       },
     },
   },
