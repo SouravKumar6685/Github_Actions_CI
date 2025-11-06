@@ -1,0 +1,78 @@
+# -------------------------
+# Node / npm
+# -------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+
+# -------------------------
+# Build outputs
+# -------------------------
+dist/
+build/
+.temp/
+.cache/
+vite.config.timestamp-*.json
+
+# -------------------------
+# Testing
+# -------------------------
+coverage/
+.vitest/
+*.spec.js
+*.test.js
+*.test.jsx
+*.test.tsx
+.junit/
+
+# -------------------------
+# Environment files
+# -------------------------
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+!.env.example
+
+# -------------------------
+# Logs
+# -------------------------
+logs/
+*.log
+*.log.*
+npm-debug.log*
+debug.log*
+
+# -------------------------
+# Editor & System Files
+# -------------------------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# -------------------------
+# GitHub / CI/CD
+# -------------------------
+# Workflow temp artifacts
+.github/workflows/*.tmp
+*.yml~
+*.yaml~
+
+# -------------------------
+# Docker
+# -------------------------
+# Ignore local Docker data but keep the Dockerfile
+docker-compose.override.yml
+docker-compose.prod.yml
+docker-compose.dev.yml
+Dockerfile*
+!.dockerignore
+.docker/
+tmp/
