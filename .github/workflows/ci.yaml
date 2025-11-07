@@ -7,8 +7,8 @@ on:
     branches: [ main ]
 
 env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  REGISTRY: docker.io
+  IMAGE_NAME: ${{ secrets.DOCKER_USERNAME }}/xo-game
 
 jobs:
   test:
@@ -84,8 +84,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     env:
-      REGISTRY: ghcr.io
-      IMAGE_NAME: ${{ github.repository }}
+      REGISTRY: docker.io
+      IMAGE_NAME: ${{ secrets.DOCKER_USERNAME }}/xo-game
     outputs:
       image_tag: ${{ steps.set_output.outputs.image_tag }}
     
@@ -102,7 +102,7 @@ jobs:
       - name: Setup docker
         uses: docker/setup-buildx-action@v3
       
-      - name: Login to github container REGISTRY
+      - name: Login to Docker container REGISTRY
         uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
@@ -113,7 +113,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.IMAGE_NAME }}
           tags: |
             type=sha, format=short
             type=ref, event=branch
@@ -131,7 +131,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:sha-${{ github.sha }}
+          image-ref: ${{ env.IMAGE_NAME }}:sha-${{ github.sha }}
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
