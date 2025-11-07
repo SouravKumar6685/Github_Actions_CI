@@ -76,3 +76,4 @@ Dockerfile*
 !.dockerignore
 .docker/
 tmp/
+k8s/
